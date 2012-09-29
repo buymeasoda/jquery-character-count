@@ -39,20 +39,26 @@
 </head>
 <body>
 
-<p><input type="text" maxlength="200"></p>
+<p><input id="field1" type="text" maxlength="100" value="An initial value that exceeds the size of the display threshold"></p>
 
-<p><input type="text" data-maxlength="20"></p>
+<p><input id="field2" type="text" data-maxlength="50"></p>
 
-<p><input type="text" value="An initial value" data-maxlength="20"></p>
+<p><input id="field3" type="text" value="An initial value" data-maxlength="30"></p>
 
 <script>
-var fields = $('input').characterCount({
+$('#field1').characterCount({
     renderCount: function (count) {
         var type = count >= 0 ? 'left' : 'over',
             count = Math.abs(count),
             singular = count === 1 ? '' : 's';
         return count + ' character' + singular + ' ' + type;
     }
+});
+
+$('#field2').characterCount();
+
+$('#field3').characterCount({
+    alwaysShow: true
 });
 </script>
 

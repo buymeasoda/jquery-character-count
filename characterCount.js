@@ -4,7 +4,7 @@
         defaults: {
             countClass: 'count',
             overClass: 'over',
-            messageHTML: '<div></div>',
+            countHTML: '<div></div>',
             renderCount: function (count) {
                 return count;
             }
@@ -19,7 +19,7 @@
         this.maxLength = settings.maxLength || this.field.attr('maxlength') || this.field.data('maxlength');
         if (this.maxLength) {
             this.settings = settings;
-            this.message = $(settings.messageHTML);
+            this.message = $(settings.countHTML);
             this.initCount();
         }
     }
@@ -29,15 +29,15 @@
             this.message.addClass(this.settings.countClass).hide();
             this.field.on({
                 'input propertychange updateCount.characterCount': $.proxy(this.updateCount, this),
-                'focus': $.proxy(this.showMessage, this),
-                'blur': $.proxy(this.hideMessage, this)
+                'focus': $.proxy(this.showCount, this),
+                'blur': $.proxy(this.hideCount, this)
             }).removeAttr('maxlength').after(this.message);
             this.updateCount();
         },
-        showMessage: function () {
+        showCount: function () {
             this.message.show();
         },
-        hideMessage: function () {
+        hideCount: function () {
             // this.message.hide();
         },
         updateCount: function () {

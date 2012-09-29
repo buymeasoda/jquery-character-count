@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>characterCount - Demo</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script src="characterCount.js"></script>
+    <style>
+
+        body {
+            font-family: Helvetica, Arial, Verdana, sans-serif;
+            line-height: 1.6em;
+            margin: 0;
+            padding: 50px;
+        }
+
+        input {
+            width: 20em;
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .counter {
+            line-height: 1em;
+            font-size: 12px;
+            color: #999;
+            margin: 0 10px;
+            display: inline-block;
+            border-radius: 4px;
+            background-color: #eee;
+            padding: 4px 8px;
+        }
+
+        .exceeded {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+<p><input type="text" maxlength="200"></p>
+
+<p><input type="text" data-maxlength="20"></p>
+
+<p><input type="text" value="An initial value" data-maxlength="20"></p>
+
+<script>
+var fields = $('input').characterCount({
+    renderCount: function (count) {
+        var type = count >= 0 ? 'left' : 'over',
+            count = Math.abs(count),
+            singular = count === 1 ? '' : 's';
+        return count + ' character' + singular + ' ' + type;
+    }
+});
+</script>
+
+</body>
+</html>

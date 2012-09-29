@@ -2,9 +2,9 @@
 
     $.characterCount = {
         defaults: {
-            counterClass: 'counter',
-            exceededClass: 'exceeded',
-            messageContainer: '<span></span>',
+            countClass: 'count',
+            overClass: 'over',
+            messageHTML: '<span></span>',
             renderCount: function (count) {
                 return count;
             }
@@ -19,7 +19,7 @@
         this.maxLength = settings.maxLength || this.field.attr('maxlength') || this.field.data('maxlength');
         if (this.maxLength) {
             this.settings = settings;
-            this.message = $(settings.messageContainer);
+            this.message = $(settings.messageHTML);
             this.field.keyup($.proxy(this.updateCount, this));
             this.createMessage();
         }
@@ -27,7 +27,7 @@
 
     $.extend(CharacterCount.prototype, {
         createMessage: function () {
-            this.message.addClass(this.settings.counterClass).hide();
+            this.message.addClass(this.settings.countClass).hide();
             this.field.on({
                 'focus': $.proxy(this.showMessage, this),
                 'blur': $.proxy(this.hideMessage, this),
@@ -36,7 +36,6 @@
             this.updateCount();
         },
         showMessage: function () {
-            this.updateCount();
             this.message.show();
         },
         hideMessage: function () {
@@ -45,7 +44,7 @@
         updateCount: function () {
             var count = this.maxLength - this.field.val().length;
             this.message.text(this.settings.renderCount(count));
-            this.message.toggleClass(this.settings.exceededClass, count < 0);
+            this.message.toggleClass(this.settings.overClass, count < 0);
         }
     });
     

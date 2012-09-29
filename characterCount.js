@@ -2,7 +2,7 @@
 
     $.characterCount = {
         defaults: {
-            alwaysShowCount: false,
+            alwaysShow: false,
             counterClass: 'counter',
             exceededClass: 'exceeded',
             countHTML: '<div></div>'
@@ -24,7 +24,7 @@
     $.extend(CharacterCount.prototype, {
         initCount: function () {
             this.message = $(this.settings.countHTML);
-            if (this.settings.alwaysShowCount !== true) {
+            if (this.settings.alwaysShow !== true) {
                 this.message.hide();
                 this.field.on({
                     'focus': $.proxy(this.showCount, this),

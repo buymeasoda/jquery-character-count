@@ -16,19 +16,19 @@
         this.maxLength = settings.maxLength || this.field.attr('maxlength') || this.field.data('maxlength');
         if (this.maxLength) {
             this.settings = settings;
-            this.message = $(settings.countHTML);
             this.initCount();
         }
     }
 
     $.extend(CharacterCount.prototype, {
         initCount: function () {
-            this.message.addClass(this.settings.counterClass).hide();
+            this.message = $(this.settings.countHTML);
+            this.message.addClass(this.settings.counterClass).hide().insertAfter(this.field);
             this.field.on({
                 'input propertychange updateCount.characterCount': $.proxy(this.updateCount, this),
                 'focus': $.proxy(this.showCount, this),
                 'blur': $.proxy(this.hideCount, this)
-            }).removeAttr('maxlength').after(this.message);
+            }).removeAttr('maxlength');
             this.updateCount();
         },
         showCount: function () {

@@ -41,7 +41,6 @@
             // this.message.hide();
         },
         updateCount: function () {
-            console.log(this.field.val())
             var count = this.maxLength - this.field.val().length;
             this.message.html(this.settings.renderCount(count));
             this.message.toggleClass(this.settings.overClass, count < 0);

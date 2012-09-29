@@ -20,12 +20,12 @@
         if (this.maxLength) {
             this.settings = settings;
             this.message = $(settings.messageHTML);
-            this.createMessage();
+            this.initCount();
         }
     }
 
     $.extend(CharacterCount.prototype, {
-        createMessage: function () {
+        initCount: function () {
             this.message.addClass(this.settings.countClass).hide();
             this.field.on({
                 'input propertychange updateCount.characterCount': $.proxy(this.updateCount, this),

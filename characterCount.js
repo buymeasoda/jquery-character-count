@@ -4,7 +4,7 @@
         defaults: {
             countClass: 'count',
             overClass: 'over',
-            messageHTML: '<span></span>',
+            messageHTML: '<div></div>',
             renderCount: function (count) {
                 return count;
             }
@@ -43,7 +43,7 @@
         },
         updateCount: function () {
             var count = this.maxLength - this.field.val().length;
-            this.message.text(this.settings.renderCount(count));
+            this.message.html(this.settings.renderCount(count));
             this.message.toggleClass(this.settings.overClass, count < 0);
         }
     });

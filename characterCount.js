@@ -20,9 +20,7 @@
         if (this.maxLength) {
             this.settings = settings;
             this.message = $(settings.messageHTML);
-            this.field.on({
-                'input': $.proxy(this.updateCount, this)
-            }).removeAttr('maxlength');
+            this.field.on('input propertychange', $.proxy(this.updateCount, this)).removeAttr('maxlength');
             this.createMessage();
         }
     }

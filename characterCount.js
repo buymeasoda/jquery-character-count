@@ -2,8 +2,8 @@
 
     $.characterCount = {
         defaults: {
-            countClass: 'count',
-            overClass: 'over',
+            counterClass: 'counter',
+            exceededClass: 'exceeded',
             countHTML: '<div></div>'
         },
         updateCount: function (fields) {
@@ -23,7 +23,7 @@
 
     $.extend(CharacterCount.prototype, {
         initCount: function () {
-            this.message.addClass(this.settings.countClass).hide();
+            this.message.addClass(this.settings.counterClass).hide();
             this.field.on({
                 'input propertychange updateCount.characterCount': $.proxy(this.updateCount, this),
                 'focus': $.proxy(this.showCount, this),
@@ -40,7 +40,7 @@
         updateCount: function () {
             var count = this.maxLength - this.field.val().length;
             this.message.html(this.settings.renderCount ? this.settings.renderCount(count) : count);
-            this.message.toggleClass(this.settings.overClass, count < 0);
+            this.message.toggleClass(this.settings.exceededClass, count < 0);
         }
     });
     

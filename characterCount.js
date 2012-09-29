@@ -20,7 +20,7 @@
         if (this.maxLength) {
             this.settings = settings;
             this.message = $(settings.messageHTML);
-            this.field.on('input propertychange', $.proxy(this.updateCount, this)).removeAttr('maxlength');
+            this.field.on('input propertychange updateCount.characterCount', $.proxy(this.updateCount, this)).removeAttr('maxlength');
             this.createMessage();
         }
     }
@@ -30,8 +30,7 @@
             this.message.addClass(this.settings.countClass).hide();
             this.field.on({
                 'focus': $.proxy(this.showMessage, this),
-                'blur': $.proxy(this.hideMessage, this),
-                'updateCount.characterCount': $.proxy(this.updateCount, this)
+                'blur': $.proxy(this.hideMessage, this)
             }).after(this.message);
             this.updateCount();
         },

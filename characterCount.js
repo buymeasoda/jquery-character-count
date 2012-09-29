@@ -9,8 +9,8 @@
                 return count;
             }
         },
-        updateCount: function (el) {
-            $(el).trigger('updateCount.characterCount');
+        updateCount: function (fields) {
+            $(fields).trigger('updateCount.characterCount');
         }
     };
     

@@ -47,6 +47,7 @@
 
 <script>
 $('#field1').characterCount({
+    displayThreshold: 20,
     renderCount: function (count) {
         var type = count >= 0 ? 'left' : 'over',
             count = Math.abs(count),

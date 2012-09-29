@@ -4,10 +4,7 @@
         defaults: {
             countClass: 'count',
             overClass: 'over',
-            countHTML: '<div></div>',
-            renderCount: function (count) {
-                return count;
-            }
+            countHTML: '<div></div>'
         },
         updateCount: function (fields) {
             $(fields).trigger('updateCount.characterCount');
@@ -42,7 +39,7 @@
         },
         updateCount: function () {
             var count = this.maxLength - this.field.val().length;
-            this.message.html(this.settings.renderCount(count));
+            this.message.html(this.settings.renderCount ? this.settings.renderCount(count) : count);
             this.message.toggleClass(this.settings.overClass, count < 0);
         }
     });

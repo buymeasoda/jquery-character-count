@@ -21,9 +21,8 @@
             this.settings = settings;
             this.message = $(settings.messageHTML);
             this.field.on({
-                keyup: $.proxy(this.updateCount, this),
-                keydown: $.proxy(this.updateCount, this),
-            ).removeAttr('maxlength');
+                'input': $.proxy(this.updateCount, this)
+            }).removeAttr('maxlength');
             this.createMessage();
         }
     }
@@ -42,9 +41,10 @@
             this.message.show();
         },
         hideMessage: function () {
-            this.message.hide();
+            // this.message.hide();
         },
         updateCount: function () {
+            console.log(this.field.val())
             var count = this.maxLength - this.field.val().length;
             this.message.html(this.settings.renderCount(count));
             this.message.toggleClass(this.settings.overClass, count < 0);

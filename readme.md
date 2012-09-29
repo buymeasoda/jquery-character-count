@@ -1,0 +1,1 @@
+# jQuery Character Count Plugin

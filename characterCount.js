@@ -20,7 +20,10 @@
         if (this.maxLength) {
             this.settings = settings;
             this.message = $(settings.messageHTML);
-            this.field.keyup($.proxy(this.updateCount, this)).removeAttr('maxlength');
+            this.field.on({
+                keyup: $.proxy(this.updateCount, this),
+                keydown: $.proxy(this.updateCount, this),
+            ).removeAttr('maxlength');
             this.createMessage();
         }
     }

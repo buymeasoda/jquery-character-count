@@ -15,9 +15,9 @@
 
     function CharacterCount(field, settings) {
         this.field = $(field);
-        this.maxLength = settings.maxLength || this.field.attr('maxlength') || this.field.data('maxlength');
+        this.settings = settings || {};
+        this.maxLength = this.settings.maxLength || this.field.attr('maxlength') || this.field.data('maxlength');
         if (this.maxLength) {
-            this.settings = settings;
             this.initCount();
         }
     }

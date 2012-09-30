@@ -2,10 +2,12 @@
 
     $.characterCount = {
         defaults: {
-            displayThreshold: 0,
             alwaysShow: false,
+            displayThreshold: 0,
+            warningPercent: 20,
             countHTML: '<div></div>',
             countClass: 'count',
+            warningClass: 'warning',
             exceededClass: 'exceeded'
         },
         updateCount: function (field) {

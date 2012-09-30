@@ -48,6 +48,7 @@
             this.message
                 .toggle(currentLength >= this.settings.displayThreshold)
                 .toggleClass(this.settings.exceededClass, count < 0)
+                .toggleClass(this.settings.warningClass, count >= 0 && count < this.settings.warningThreshold)
                 .html(this.settings.renderCount ? this.settings.renderCount(count) : count);
         },
         hideCount: function () {

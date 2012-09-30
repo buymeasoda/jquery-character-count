@@ -4,9 +4,9 @@
         defaults: {
             displayThreshold: 0,
             alwaysShow: false,
-            exceededClass: 'exceeded',
-            countHTML: '<div></div>'
+            countHTML: '<div></div>',
             countClass: 'count',
+            exceededClass: 'exceeded'
         },
         updateCount: function (field) {
             $(field).trigger('updateCount.characterCount');

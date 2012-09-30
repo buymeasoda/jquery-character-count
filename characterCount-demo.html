@@ -31,6 +31,10 @@
             padding: 4px 8px;
         }
 
+        .warning {
+            color: purple;
+        }
+
         .exceeded {
             color: red;
         }
@@ -48,6 +52,7 @@
 <script>
 $('#field1').characterCount({
     displayThreshold: 20,
+    warningThreshold: 20,
     renderCount: function (count) {
         var type = count >= 0 ? 'left' : 'over',
             count = Math.abs(count),

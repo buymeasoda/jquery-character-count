@@ -59,6 +59,10 @@
         }
     });
 
+    $.characterCount.create = function (field, options) {
+        return new CharacterCount(field, $.extend({}, $.characterCount.defaults, options || {}));
+    };
+
     $.fn.characterCount = function (options) {
         var settings = $.extend({}, $.characterCount.defaults, options || {});
         return this.each(function () {

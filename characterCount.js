@@ -4,9 +4,9 @@
         defaults: {
             displayThreshold: 0,
             alwaysShow: false,
-            counterClass: 'counter',
             exceededClass: 'exceeded',
             countHTML: '<div></div>'
+            countClass: 'count',
         },
         updateCount: function (field) {
             $(field).trigger('updateCount.characterCount');
@@ -32,10 +32,12 @@
                     'blur': $.proxy(this.hideCount, this)
                 });
             }
-            this.message.addClass(this.settings.counterClass).insertAfter(this.field);
             this.field.on('input propertychange updateCount.characterCount', $.proxy(this.updateCount, this));
             this.field.removeAttr('maxlength');
             this.updateCount(true);
+            this.message
+                .addClass(this.settings.countClass)
+                .insertAfter(this.field);
         },
         showCount: function () {
             if (this.currentLength >= this.settings.displayThreshold) {

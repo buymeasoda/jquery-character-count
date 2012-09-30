@@ -27,34 +27,29 @@
             this.message = $(this.settings.countHTML);
             if (this.settings.alwaysShow === false) {
                 this.message.hide();
-                this.field.on({
-                    'focus': $.proxy(this.showCount, this),
-                    'blur': $.proxy(this.hideCount, this)
-                });
             }
-            this.field.on('input propertychange updateCount.characterCount', $.proxy(this.updateCount, this));
-            this.field.removeAttr('maxlength');
-            this.updateCount(true);
             this.message
                 .addClass(this.settings.countClass)
                 .insertAfter(this.field);
-        },
-        showCount: function () {
-            if (this.currentLength >= this.settings.displayThreshold) {
-                this.message.show();
+            this.field.removeAttr('maxlength').on({
+                'focus input propertychange updateCount.characterCount': $.proxy(this.showCount, this),
+                'blur': $.proxy(this.hideCount, this)
+            });
+            if (this.settings.alwaysShow) {
+                this.showCount();
             }
         },
-        hideCount: function () {
-            this.message.hide();
+        showCount: function () {
+            var currentLength = this.field.val().length,
+                count = this.maxLength - currentLength;
+            this.message
+                .toggle(currentLength >= this.settings.displayThreshold)
+                .toggleClass(this.settings.exceededClass, count < 0)
+                .html(this.settings.renderCount ? this.settings.renderCount(count) : count);
         },
-        updateCount: function (init) {
-            var count;
-            this.currentLength = this.field.val().length;
-            count = this.maxLength - this.currentLength;
-            this.message.toggleClass(this.settings.exceededClass, count < 0)
-            this.message.html(this.settings.renderCount ? this.settings.renderCount(count) : count);
-            if (init !== true) {
-                this.message.toggle(this.currentLength >= this.settings.displayThreshold)
+        hideCount: function () {
+            if (this.settings.alwaysShow === false) {
+                this.message.hide();    
             }
         }
     });

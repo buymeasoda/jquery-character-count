@@ -8,8 +8,8 @@
             exceededClass: 'exceeded',
             countHTML: '<div></div>'
         },
-        updateCount: function (fields) {
-            $(fields).trigger('updateCount.characterCount');
+        updateCount: function (field) {
+            $(field).trigger('updateCount.characterCount');
         }
     };
 

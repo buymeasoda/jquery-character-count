@@ -20,6 +20,7 @@
         this.settings = settings || {};
         this.maxLength = this.settings.maxLength || this.field.attr('maxlength') || this.field.data('maxlength');
         if (this.maxLength) {
+            this.settings.warningThreshold = this.maxLength * this.settings.warningPercent / 100;
             this.initCount();
         }
     }

@@ -25,7 +25,7 @@
     $.extend(CharacterCount.prototype, {
         initCount: function () {
             this.message = $(this.settings.countHTML);
-            if (this.settings.alwaysShow !== true) {
+            if (this.settings.alwaysShow === false) {
                 this.message.hide();
                 this.field.on({
                     'focus': $.proxy(this.showCount, this),

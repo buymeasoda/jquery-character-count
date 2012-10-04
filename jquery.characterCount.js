@@ -1,18 +1,5 @@
 (function ($) {
 
-    $.characterCount = {
-        defaults: {
-            displayThreshold: 0,
-            alwaysShow: false,
-            countHTML: '<div></div>',
-            countClass: 'count',
-            exceededClass: 'exceeded'
-        },
-        updateCount: function (field) {
-            $(field).trigger('updateCount.characterCount');
-        }
-    };
-
     function CharacterCount(field, settings) {
         this.field = $(field);
         this.settings = settings || {};
@@ -32,7 +19,7 @@
                 .addClass(this.settings.countClass)
                 .insertAfter(this.field);
             this.field.removeAttr('maxlength').on({
-                'focus input propertychange updateCount.characterCount': $.proxy(this.showCount, this),
+                'focus input propertychange': $.proxy(this.showCount, this),
                 'blur': $.proxy(this.hideCount, this)
             });
             if (this.settings.alwaysShow) {
@@ -59,10 +46,18 @@
     };
 
     $.fn.characterCount = function (options) {
-        var settings = $.extend({}, $.characterCount.defaults, options || {});
+        var settings = $.extend({}, $.fn.characterCount.defaults, options || {});
         return this.each(function () {
             new CharacterCount(this, settings);
         });
+    };
+
+    $.fn.characterCount.defaults = {
+        displayThreshold: 0,
+        alwaysShow: false,
+        countHTML: '<div></div>',
+        countClass: 'count',
+        exceededClass: 'exceeded'
     };
 
 }(jQuery));

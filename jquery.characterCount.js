@@ -41,14 +41,12 @@
         }
     });
 
-    $.characterCount.create = function (field, options) {
-        return new CharacterCount(field, $.extend({}, $.characterCount.defaults, options || {}));
-    };
-
     $.fn.characterCount = function (options) {
         var settings = $.extend({}, $.fn.characterCount.defaults, options || {});
         return this.each(function () {
-            new CharacterCount(this, settings);
+            if (!$.data(this, 'sodaCharacterCount')) {
+                $.data(this, 'sodaCharacterCount', new CharacterCount(this, settings));
+            }
         });
     };
 

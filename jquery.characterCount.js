@@ -5,12 +5,12 @@
         this.settings = settings || {};
         this.maxLength = this.settings.maxLength || this.field.attr('maxlength') || this.field.data('maxlength');
         if (this.maxLength) {
-            this.initCount();
+            this.init();
         }
     }
 
     $.extend(CharacterCount.prototype, {
-        initCount: function () {
+        init: function () {
             this.message = $(this.settings.countHTML);
             if (this.settings.alwaysShow === false) {
                 this.message.hide();
@@ -36,7 +36,7 @@
         },
         hideCount: function () {
             if (this.settings.alwaysShow === false) {
-                this.message.hide();    
+                this.message.hide();
             }
         }
     });
